@@ -13,10 +13,10 @@
 
 class Dustbin {
 public:
-    void throwOutGarbage(std::shared_ptr<Garbage>); // the argument is an instance of the Garbage class. It puts that into the houseWasteContent array
-    void throwOutPaperGarbage(std::shared_ptr<PaperGarbage>); // the argument is an instance of the PaperGarbage class. If it's squeezed, then it puts that into the paperContent array. If the PaperGarbage instance is not squeezed, it raises a DustbinContentError exception
-    void throwOutPlasticGarbage(std::shared_ptr<PlasticGarbage>); // the argument is an instance of the PlasticGarbage class. If it's clean, then it puts that into the plasticContent array. If the PlasticGarbage instance is not clean, it raises a DustbinContentError exception
-    void emptyContents(); // If it's called, all the garbage containers gets emptied
+    void throwOutGarbage(std::shared_ptr<Garbage>);
+    void throwOutPaperGarbage(std::shared_ptr<PaperGarbage>);
+    void throwOutPlasticGarbage(std::shared_ptr<PlasticGarbage>);
+    void emptyContents();
 
 //private:
     std::string color;
