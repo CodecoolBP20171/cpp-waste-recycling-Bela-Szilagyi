@@ -5,8 +5,8 @@
 #include "Dustbin.h"
 #include "DustbinContentError.hpp"
 
-void Dustbin::throwOutGarbage(std::shared_ptr<Garbage> garbage) {
-    houseWasteContent.push_back(garbage);
+void Dustbin::throwOutGarbage(Garbage &garbage) {
+    houseWasteContent[0] = std::move(garbage);
 }
 
 // the argument is an instance of the PaperGarbage class.
@@ -31,7 +31,7 @@ void Dustbin::throwOutPlasticGarbage(std::shared_ptr<PlasticGarbage> plasticGarb
 
 
 void Dustbin::emptyContents() {
-    houseWasteContent.erase(houseWasteContent.begin(), houseWasteContent.end());
+    //houseWasteContent.erase(houseWasteContent.begin(), houseWasteContent.end());
     paperContent.erase(paperContent.begin(), paperContent.end());
     plasticContent.erase(plasticContent.begin(), plasticContent.end());
 }

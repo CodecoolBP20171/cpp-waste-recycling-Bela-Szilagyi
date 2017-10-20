@@ -9,6 +9,7 @@
 
 class Garbage {
 public:
+    Garbage() {}
     Garbage(std::string) {}
 
     virtual ~Garbage() {};

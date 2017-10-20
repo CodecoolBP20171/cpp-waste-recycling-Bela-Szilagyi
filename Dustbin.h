@@ -13,7 +13,10 @@
 
 class Dustbin {
 public:
-    void throwOutGarbage(std::shared_ptr<Garbage>);
+    Dustbin() {
+        houseWasteContent = std::unique_ptr<Garbage[]>(new Garbage[1]) ;
+    }
+    void throwOutGarbage(Garbage &garbage);
     void throwOutPaperGarbage(std::shared_ptr<PaperGarbage>);
     void throwOutPlasticGarbage(std::shared_ptr<PlasticGarbage>);
     void emptyContents();
@@ -22,7 +25,7 @@ public:
     std::string color;
     std::vector<std::shared_ptr<PaperGarbage>> paperContent;
     std::vector<std::shared_ptr<PlasticGarbage>> plasticContent;
-    std::vector<std::shared_ptr<Garbage>> houseWasteContent;
+    std::unique_ptr<Garbage[]> houseWasteContent;
 };
 
 
