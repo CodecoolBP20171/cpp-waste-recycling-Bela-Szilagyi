@@ -6,6 +6,6 @@ add_subdirectory(lib/googletest-master)
 include_directories(lib/googletest-master/googletest/include)
 include_directories(lib/googletest-master/googlemock/include)
 
-set(SOURCE_FILES main.cpp Garbage.h PaperGarbage.cpp PaperGarbage.h PlasticGarbage.h DustbinContentError.hpp Dustbin.cpp Dustbin.h tests/test.cpp)
-add_executable(cpp_waste_recycling ${SOURCE_FILES} Garbage.h PaperGarbage.cpp PaperGarbage.h PlasticGarbage.h Dustbin.cpp Dustbin.h tests/test.cpp)
+set(SOURCE_FILES main.cpp Garbage.cpp Garbage.h PaperGarbage.cpp PaperGarbage.h PlasticGarbage.cpp PlasticGarbage.h DustbinContentError.hpp Dustbin.cpp Dustbin.h tests/test.cpp)
+add_executable(cpp_waste_recycling ${SOURCE_FILES})
 target_link_libraries(cpp_waste_recycling gtest gtest_main)

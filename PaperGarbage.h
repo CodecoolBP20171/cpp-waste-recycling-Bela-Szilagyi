@@ -10,6 +10,7 @@
 
 class PaperGarbage : public Garbage {
 public:
+    PaperGarbage() {}
     PaperGarbage(std::string name)
         : Garbage(name)
         , isSqueezed(false)

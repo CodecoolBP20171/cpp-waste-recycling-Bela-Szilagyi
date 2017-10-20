@@ -7,8 +7,9 @@
 
 #include "Garbage.h"
 
-class PlasticGarbage : Garbage {
+class PlasticGarbage : public Garbage {
 public:
+    PlasticGarbage() {}
     PlasticGarbage(std::string name)
         : Garbage(name)
         , isClean(false)
@@ -16,7 +17,7 @@ public:
 
     virtual ~PlasticGarbage(){}
 
-    void clean(){}
+    void clean();
 
     bool isClean;
 

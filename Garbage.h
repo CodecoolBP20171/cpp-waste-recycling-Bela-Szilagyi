@@ -10,11 +10,11 @@
 class Garbage {
 public:
     Garbage() {}
-    Garbage(std::string) {}
+    Garbage(std::string);
 
     virtual ~Garbage() {};
 
-    std::string getName() {};
+    std::string getName();
 
 private:
     std::string name;
