@@ -31,8 +31,10 @@ void Dustbin::throwOutPlasticGarbage(PlasticGarbage &plasticGarbage) {
 
 
 void Dustbin::emptyContents() {
+    houseWasteContent = std::unique_ptr<Garbage[]>(new Garbage[1]);
+    plasticContent = std::unique_ptr<PlasticGarbage[]>(new PlasticGarbage[1]);
+    paperContent = std::unique_ptr<PaperGarbage[]>(new PaperGarbage[1]);
     //houseWasteContent.erase(houseWasteContent.begin(), houseWasteContent.end());
-
     //paperContent.erase(paperContent.begin(), paperContent.end());
     //plasticContent.erase(plasticContent.begin(), plasticContent.end());
 }
