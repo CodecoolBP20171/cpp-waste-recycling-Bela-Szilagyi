@@ -3,6 +3,7 @@
 #include <gmock/gmock.h>
 #include "Dustbin.h"
 #include "Garbage.h"
+#include "Exceptions.hpp"
 
 int main(int argc, char* argv[]) {
 
@@ -15,6 +16,12 @@ int main(int argc, char* argv[]) {
     d.throwOutGarbage(garbage2);
     std::cout<<d.houseWasteContent[1].getName()<<std::endl;
     PaperGarbage paper("paper1");
+    try {
+        d.throwOutPaperGarbage(paper);
+    }
+    catch (DustbinContentError &err) {
+        std::cout<<"Exception: "<<err.what()<<std::endl;
+    }
     paper.squeeze();
     d.throwOutPaperGarbage(paper);
     std::cout<<d.paperContent[0].getName()<<std::endl;
@@ -24,6 +31,12 @@ int main(int argc, char* argv[]) {
     std::cout<<d.paperContent[1].getName()<<std::endl;
     PlasticGarbage plastic("plastic1");
     plastic.clean();
+    try {
+        d.throwOutPlasticGarbage(plastic);
+    } catch (DustbinIsFull &err) {
+        std::cout<<"Exception: "<<err.what()<<std::endl;
+    }
+    d.emptyContents();
     d.throwOutPlasticGarbage(plastic);
     std::cout<<d.plasticContent[0].getName()<<std::endl;
     PlasticGarbage plastic2("plastic2");

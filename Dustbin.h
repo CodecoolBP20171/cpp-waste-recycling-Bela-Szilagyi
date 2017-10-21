@@ -24,12 +24,17 @@ public:
     std::unique_ptr<PaperGarbage[]> paperContent;
     int paperSize = 1;
     int paperCounter = 0;
+    int paperWeight = 3;
     std::unique_ptr<PlasticGarbage[]> plasticContent;
     int plasticSize = 1;
     int plasticCounter = 0;
+    int plasticWeight = 1;
     std::unique_ptr<Garbage[]> houseWasteContent;
     int garbageSize = 1;
     int garbageCounter = 0;
+    int garbageWeight = 2;
+    int weight = 0;
+    int maxWeight = 10;
 };
 
 

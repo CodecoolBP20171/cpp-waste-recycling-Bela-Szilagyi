@@ -3,27 +3,30 @@
 //
 
 #include "Dustbin.h"
-#include "DustbinContentError.hpp"
+#include "Exceptions.hpp"
 
 Dustbin::Dustbin() {
     try {
         houseWasteContent = std::unique_ptr<Garbage[]>(new Garbage[garbageSize]);
     } catch (std::bad_alloc& err) {
-        std::cerr<<"sorry, bad alloc: "<<err.what()<<std::endl;
+        std::cerr<<"Sorry, bad alloc: "<<err.what()<<std::endl;
     }
     try {
         plasticContent = std::unique_ptr<PlasticGarbage[]>(new PlasticGarbage[plasticSize]);
     } catch (std::bad_alloc& err) {
-        std::cerr<<"sorry, bad alloc: "<<err.what()<<std::endl;
+        std::cerr<<"Sorry, bad alloc: "<<err.what()<<std::endl;
     }
     try {
         paperContent = std::unique_ptr<PaperGarbage[]>(new PaperGarbage[paperSize]);
     } catch (std::bad_alloc& err) {
-        std::cerr<<"sorry, bad alloc: "<<err.what()<<std::endl;
+        std::cerr<<"Sorry, bad alloc: "<<err.what()<<std::endl;
     }
 }
 
 void Dustbin::throwOutGarbage(Garbage &garbage) {
+    if (weight+garbageWeight > maxWeight) {
+        throw DustbinIsFull();
+    }
     if (garbageCounter >= garbageSize) {
         try {
             std::unique_ptr<Garbage[]> temp(new Garbage[garbageSize*2]);
@@ -37,12 +40,16 @@ void Dustbin::throwOutGarbage(Garbage &garbage) {
     }
     houseWasteContent[garbageCounter] = std::move(garbage);
     ++garbageCounter;
+    weight += garbageWeight;
 }
 
 // the argument is an instance of the PaperGarbage class.
 // If it's squeezed, then it puts that into the paperContent array.
 // If the PaperGarbage instance is not squeezed, it raises a DustbinContentError exception
 void Dustbin::throwOutPaperGarbage(PaperGarbage &paperGarbage) {
+    if (weight+paperWeight > maxWeight) {
+        throw DustbinIsFull();
+    }
     if ( !paperGarbage.isSqueezed ) {
         throw DustbinContentError();
     }
@@ -59,12 +66,16 @@ void Dustbin::throwOutPaperGarbage(PaperGarbage &paperGarbage) {
     }
     paperContent[paperCounter] = std::move(paperGarbage);
     ++paperCounter;
+    weight += paperWeight;
 }
 
 // the argument is an instance of the PlasticGarbage class.
 // If it's clean, then it puts that into the plasticContent array.
 // If the PlasticGarbage instance is not clean, it raises a DustbinContentError exception
 void Dustbin::throwOutPlasticGarbage(PlasticGarbage &plasticGarbage) {
+    if (weight+plasticWeight > maxWeight) {
+        throw DustbinIsFull();
+    }
     if ( !plasticGarbage.isClean ) {
         throw DustbinContentError();
     }
@@ -81,6 +92,7 @@ void Dustbin::throwOutPlasticGarbage(PlasticGarbage &plasticGarbage) {
     }
     plasticContent[plasticCounter] = std::move(plasticGarbage);
     ++plasticCounter;
+    weight += plasticWeight;
 }
 
 void Dustbin::emptyContents() {
@@ -94,7 +106,7 @@ void Dustbin::emptyContents() {
     plasticCounter = 0;
     garbageSize = 1;
     garbageCounter = 0;
-
+    weight = 0;
     //houseWasteContent.erase(houseWasteContent.begin(), houseWasteContent.end());
     //paperContent.erase(paperContent.begin(), paperContent.end());
     //plasticContent.erase(plasticContent.begin(), plasticContent.end());
