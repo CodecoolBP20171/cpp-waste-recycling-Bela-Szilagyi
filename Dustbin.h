@@ -14,9 +14,9 @@
 class Dustbin {
 public:
     Dustbin() {
-        houseWasteContent = std::unique_ptr<Garbage[]>(new Garbage[1]);
-        plasticContent = std::unique_ptr<PlasticGarbage[]>(new PlasticGarbage[1]);
-        paperContent = std::unique_ptr<PaperGarbage[]>(new PaperGarbage[1]);
+        houseWasteContent = std::unique_ptr<Garbage[]>(new Garbage[garbageSize]);
+        plasticContent = std::unique_ptr<PlasticGarbage[]>(new PlasticGarbage[plasticSize]);
+        paperContent = std::unique_ptr<PaperGarbage[]>(new PaperGarbage[paperSize]);
     }
     void throwOutGarbage(Garbage &garbage);
     void throwOutPaperGarbage(PaperGarbage &paper);
@@ -26,8 +26,14 @@ public:
 //private:
     std::string color;
     std::unique_ptr<PaperGarbage[]> paperContent;
+    int paperSize = 1;
+    int paperCounter = 0;
     std::unique_ptr<PlasticGarbage[]> plasticContent;
+    int plasticSize = 1;
+    int plasticCounter = 0;
     std::unique_ptr<Garbage[]> houseWasteContent;
+    int garbageSize = 1;
+    int garbageCounter = 0;
 };
 
 
