@@ -5,13 +5,35 @@
 #include "Dustbin.h"
 #include "DustbinContentError.hpp"
 
+Dustbin::Dustbin() {
+    try {
+        houseWasteContent = std::unique_ptr<Garbage[]>(new Garbage[garbageSize]);
+    } catch (std::bad_alloc& err) {
+        std::cerr<<"sorry, bad alloc: "<<err.what()<<std::endl;
+    }
+    try {
+        plasticContent = std::unique_ptr<PlasticGarbage[]>(new PlasticGarbage[plasticSize]);
+    } catch (std::bad_alloc& err) {
+        std::cerr<<"sorry, bad alloc: "<<err.what()<<std::endl;
+    }
+    try {
+        paperContent = std::unique_ptr<PaperGarbage[]>(new PaperGarbage[paperSize]);
+    } catch (std::bad_alloc& err) {
+        std::cerr<<"sorry, bad alloc: "<<err.what()<<std::endl;
+    }
+}
+
 void Dustbin::throwOutGarbage(Garbage &garbage) {
     if (garbageCounter >= garbageSize) {
-        std::unique_ptr<Garbage[]> temp(new Garbage[garbageSize*2]);
-        for (int i = 0; i< garbageSize; ++i) {
-            temp[i] = std::move(houseWasteContent[i]);
+        try {
+            std::unique_ptr<Garbage[]> temp(new Garbage[garbageSize*2]);
+            for (int i = 0; i< garbageSize; ++i) {
+                temp[i] = std::move(houseWasteContent[i]);
+            }
+            houseWasteContent = std::move(temp);
+        } catch (std::bad_alloc& err) {
+            std::cerr<<"sorry, bad alloc: "<<err.what()<<std::endl;
         }
-        houseWasteContent = std::move(temp);
     }
     houseWasteContent[garbageCounter] = std::move(garbage);
     ++garbageCounter;
@@ -25,11 +47,15 @@ void Dustbin::throwOutPaperGarbage(PaperGarbage &paperGarbage) {
         throw DustbinContentError();
     }
     if (paperCounter >= paperSize) {
-        std::unique_ptr<PaperGarbage[]> temp(new PaperGarbage[paperSize*2]);
-        for (int i = 0; i< paperSize; ++i) {
-            temp[i] = std::move(paperContent[i]);
+        try {
+            std::unique_ptr<PaperGarbage[]> temp(new PaperGarbage[paperSize*2]);
+            for (int i = 0; i< paperSize; ++i) {
+                temp[i] = std::move(paperContent[i]);
+            }
+            paperContent = std::move(temp);
+        } catch (std::bad_alloc& err) {
+            std::cerr<<"sorry, bad alloc: "<<err.what()<<std::endl;
         }
-        paperContent = std::move(temp);
     }
     paperContent[paperCounter] = std::move(paperGarbage);
     ++paperCounter;
@@ -43,11 +69,15 @@ void Dustbin::throwOutPlasticGarbage(PlasticGarbage &plasticGarbage) {
         throw DustbinContentError();
     }
     if (plasticCounter >= plasticSize) {
-        std::unique_ptr<PlasticGarbage[]> temp(new PlasticGarbage[plasticSize*2]);
-        for (int i = 0; i< plasticSize; ++i) {
-            temp[i] = std::move(plasticContent[i]);
+        try {
+            std::unique_ptr<PlasticGarbage[]> temp(new PlasticGarbage[plasticSize * 2]);
+            for (int i = 0; i < plasticSize; ++i) {
+                temp[i] = std::move(plasticContent[i]);
+            }
+            plasticContent = std::move(temp);
+        } catch (std::bad_alloc &err) {
+            std::cerr << "sorry, bad alloc: " << err.what() << std::endl;
         }
-        plasticContent = std::move(temp);
     }
     plasticContent[plasticCounter] = std::move(plasticGarbage);
     ++plasticCounter;

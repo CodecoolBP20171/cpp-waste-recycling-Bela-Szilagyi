@@ -13,11 +13,7 @@
 
 class Dustbin {
 public:
-    Dustbin() {
-        houseWasteContent = std::unique_ptr<Garbage[]>(new Garbage[garbageSize]);
-        plasticContent = std::unique_ptr<PlasticGarbage[]>(new PlasticGarbage[plasticSize]);
-        paperContent = std::unique_ptr<PaperGarbage[]>(new PaperGarbage[paperSize]);
-    }
+    Dustbin();
     void throwOutGarbage(Garbage &garbage);
     void throwOutPaperGarbage(PaperGarbage &paper);
     void throwOutPlasticGarbage(PlasticGarbage &plastic);
