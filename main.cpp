@@ -8,6 +8,8 @@
 int main(int argc, char* argv[]) {
 
     Dustbin d;
+    d.setColor("green");
+    std::cout<<d.getColor()<<std::endl;
     std::cout<<d.houseWasteContent[0].getName()<<std::endl;
     Garbage garbage("garbage1");
     d.throwOutGarbage(garbage);

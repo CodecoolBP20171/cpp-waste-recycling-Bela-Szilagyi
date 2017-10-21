@@ -20,6 +20,6 @@ namespace {
 }
 
 TEST_F(ClassDeclaration, test1) {
-    d.color = "orange";
-    ASSERT_EQ("orange", d.color);
+    d.setColor("orange");
+    ASSERT_EQ("orange", d.getColor());
 }

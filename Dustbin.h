@@ -21,6 +21,11 @@ public:
 
 //private:
     std::string color;
+
+    const std::string &getColor() const;
+
+    void setColor(const std::string &color);
+
     std::unique_ptr<PaperGarbage[]> paperContent;
     int paperSize = 1;
     int paperCounter = 0;

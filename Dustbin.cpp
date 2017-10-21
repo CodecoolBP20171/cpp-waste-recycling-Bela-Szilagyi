@@ -111,3 +111,11 @@ void Dustbin::emptyContents() {
     //paperContent.erase(paperContent.begin(), paperContent.end());
     //plasticContent.erase(plasticContent.begin(), plasticContent.end());
 }
+
+const std::string &Dustbin::getColor() const {
+    return color;
+}
+
+void Dustbin::setColor(const std::string &color) {
+    Dustbin::color = color;
+}
