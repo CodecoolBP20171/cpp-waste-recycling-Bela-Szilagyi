@@ -10,6 +10,7 @@
 
 class Dustbin9000 : public Dustbin {
 public:
+    Dustbin9000();
     void throwOutMetalGarbage(MetalGarbage &metal);
     std::unique_ptr<MetalGarbage[]> metalContent;
     int metalSize = 1;

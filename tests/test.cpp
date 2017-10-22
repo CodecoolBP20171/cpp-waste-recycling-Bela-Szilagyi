@@ -115,3 +115,15 @@ TEST_F(dustbin9000, testDustbinColor) {
     d9000.setColor("red");
     ASSERT_EQ("red", d9000.getColor());
 }
+
+TEST_F(dustbin9000, testThrowOutGarbage) {
+    Garbage garbage("garbage9000");
+    d9000.throwOutGarbage(garbage);
+    ASSERT_EQ("garbage9000", d9000.houseWasteContent[0].getName());
+}
+
+TEST_F(dustbin9000, testThrowOutMetalGarbage) {
+    MetalGarbage metal("metal9000");
+    d9000.throwOutMetalGarbage(metal);
+    ASSERT_EQ("metal9000", d9000.metalContent[0].getName());
+}
