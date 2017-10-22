@@ -23,5 +23,13 @@ public:
     }
 };
 
+class BottleCapException : public std::exception
+{
+public:
+    virtual const char* what() const noexcept
+    {
+        return "Sorry, but it is a non-pink cap, therefore I have to fire it back to your face. You should run!";
+    }
+};
 
 #endif //CPP_WASTE_RECYCLING_EXCEPTIONS_H

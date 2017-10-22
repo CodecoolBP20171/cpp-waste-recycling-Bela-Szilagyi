@@ -127,3 +127,36 @@ TEST_F(dustbin9000, testThrowOutMetalGarbage) {
     d9000.throwOutMetalGarbage(metal);
     ASSERT_EQ("metal9000", d9000.metalContent[0].getName());
 }
+
+TEST_F(dustbin9000, testThrowOutPinkCap) {
+    BottleCap pinkCap("pinkCap", "pink");
+    d9000.throwOutBottleCap(pinkCap);
+    ASSERT_EQ("pinkCap", d9000.capContent[0].getName());
+}
+
+TEST(capNotPink, what)
+{
+    Dustbin9000 d9000;
+    BottleCap redCap("KetchupCap", "red");
+    try {
+        d9000.throwOutBottleCap(redCap);
+    } catch (BottleCapException &err) {
+        EXPECT_STREQ("Sorry, but it is a non-pink cap, therefore I have to fire it back to your face. You should run!", err.what());
+    }
+}
+
+TEST(dustbin9000IsFull, what)
+{
+    Dustbin9000 d9000;
+    PaperGarbage paper9001("paper9001");
+    paper9001.squeeze();
+    d9000.throwOutPaperGarbage(paper9001);
+    MetalGarbage metal9001("metal9001");
+    d9000.throwOutMetalGarbage(metal9001);
+    MetalGarbage metal9002("metal9002");
+    try {
+        d9000.throwOutMetalGarbage(metal9002);;
+    } catch (DustbinIsFull &err) {
+        EXPECT_STREQ("Dustbin is full! You have to empty it before throwing out any more garbage!", err.what());
+    }
+}

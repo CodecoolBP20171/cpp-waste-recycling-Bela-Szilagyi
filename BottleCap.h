@@ -5,12 +5,18 @@
 #ifndef CPP_WASTE_RECYCLING_BOTTLECAP_H
 #define CPP_WASTE_RECYCLING_BOTTLECAP_H
 
-#include <random>
 #include "Garbage.h"
 
 class BottleCap : public Garbage {
 public:
     BottleCap() {}
+
+/*
+    BottleCap(std::string name)
+    : Garbage(name)
+    {}
+*/
+
     BottleCap(std::string name, std::string color)
     : Garbage(name)
     , color(color)
