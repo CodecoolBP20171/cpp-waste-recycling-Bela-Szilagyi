@@ -7,38 +7,39 @@
 
 #include "../Dustbin.h"
 #include "../Exceptions.hpp"
+#include "../Dustbin9000.h"
 
 using testing::Eq;
 
 namespace {
-    class ClassDeclaration : public testing::Test {
+    class dustbin : public testing::Test {
     public:
         Dustbin d;
-        ClassDeclaration() {
+        dustbin() {
             d;
         }
     };
 }
 
-TEST_F(ClassDeclaration, testDustbinColor) {
+TEST_F(dustbin, testDustbinColor) {
     d.setColor("orange");
     ASSERT_EQ("orange", d.getColor());
 }
 
-TEST_F(ClassDeclaration, testThrowOutGarbage) {
+TEST_F(dustbin, testThrowOutGarbage) {
     Garbage garbage("garbage1");
     d.throwOutGarbage(garbage);
     ASSERT_EQ("garbage1", d.houseWasteContent[0].getName());
 }
 
-TEST_F(ClassDeclaration, testThrowOutSqueezedPaper) {
+TEST_F(dustbin, testThrowOutSqueezedPaper) {
     PaperGarbage paper("paper1");
     paper.squeeze();
     d.throwOutPaperGarbage(paper);
     ASSERT_EQ("paper1", d.paperContent[0].getName());
 }
 
-TEST_F(ClassDeclaration, testFillAfterEmptyContents) {
+TEST_F(dustbin, testFillAfterEmptyContents) {
     Garbage garbage("garbage1");
     d.throwOutGarbage(garbage);
     Garbage garbage2("garbage2");
@@ -98,4 +99,19 @@ TEST(dustbinIsFull, what)
     } catch (DustbinIsFull &err) {
         EXPECT_STREQ("Dustbin is full! You have to empty it before throwing out any more garbage!", err.what());
     }
+}
+
+namespace {
+    class dustbin9000 : public testing::Test {
+    public:
+        Dustbin9000 d9000;
+        dustbin9000() {
+            d9000;
+        }
+    };
+}
+
+TEST_F(dustbin9000, testDustbinColor) {
+    d9000.setColor("red");
+    ASSERT_EQ("red", d9000.getColor());
 }

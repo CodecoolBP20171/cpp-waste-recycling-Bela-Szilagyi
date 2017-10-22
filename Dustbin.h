@@ -14,10 +14,10 @@
 class Dustbin {
 public:
     Dustbin();
-    void throwOutGarbage(Garbage &garbage);
-    void throwOutPaperGarbage(PaperGarbage &paper);
-    void throwOutPlasticGarbage(PlasticGarbage &plastic);
-    void emptyContents();
+    virtual void throwOutGarbage(Garbage &garbage);
+    virtual void throwOutPaperGarbage(PaperGarbage &paper);
+    virtual void throwOutPlasticGarbage(PlasticGarbage &plastic);
+    virtual void emptyContents();
 
 //private:
     std::string color;
