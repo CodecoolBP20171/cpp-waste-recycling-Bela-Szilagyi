@@ -26,20 +26,16 @@ TEST_F(dustbin, testDustbinColor) {
     ASSERT_EQ("orange", d.getColor());
 }
 
-/*TEST_F(dustbin, testThrowOutGarbage) {
+TEST_F(dustbin, createGarbage) {
     Garbage garbage("garbage1");
-    d.throwOutGarbage(garbage);
-    ASSERT_EQ("garbage1", d.houseWasteContent[0].getName());
-}*/
+    ASSERT_EQ("garbage1", garbage.getName());
+}
 
-/*
-TEST_F(dustbin, testThrowOutSqueezedPaper) {
+TEST_F(dustbin, squeezePaper) {
     PaperGarbage paper("paper1");
     paper.squeeze();
-    d.throwOutPaperGarbage(paper);
-    ASSERT_EQ("paper1", d.paperContent[0].getName());
+    ASSERT_EQ(true, paper.isSqueezed);
 }
-*/
 
 /*
 TEST_F(dustbin, testFillAfterEmptyContents) {
@@ -128,11 +124,10 @@ TEST_F(dustbin9000, testThrowOutGarbage) {
 }
 */
 
-/*TEST_F(dustbin9000, testThrowOutMetalGarbage) {
+TEST_F(dustbin9000, testCreateMetalGarbage) {
     MetalGarbage metal("metal9000");
-    d9000.throwOutMetalGarbage(metal);
-    ASSERT_EQ("metal9000", d9000.metalContent[0].getName());
-}*/
+    ASSERT_EQ("metal9000", metal.getName());
+}
 
 /*TEST_F(dustbin9000, testThrowOutPinkCap) {
     BottleCap pinkCap("pinkCap", "pink");
