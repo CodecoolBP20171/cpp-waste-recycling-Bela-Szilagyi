@@ -18,14 +18,10 @@ public:
     virtual void throwOutPaperGarbage(PaperGarbage &paper);
     virtual void throwOutPlasticGarbage(PlasticGarbage &plastic);
     virtual void emptyContents();
-
-//private:
-    std::string color;
-
-    const std::string &getColor() const;
-
     void setColor(const std::string &color);
-
+    const std::string &getColor() const;
+protected:
+    std::string color;
     std::unique_ptr<PaperGarbage[]> paperContent;
     int paperSize = 1;
     int paperCounter = 0;

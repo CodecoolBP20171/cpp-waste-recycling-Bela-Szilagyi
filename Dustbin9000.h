@@ -12,20 +12,19 @@
 class Dustbin9000 : public Dustbin {
 public:
     Dustbin9000();
-
+    virtual void emptyContents();
     void throwOutMetalGarbage(MetalGarbage &metal);
+    void throwOutBottleCap(BottleCap &cap);
+private:
     std::unique_ptr<MetalGarbage[]> metalContent;
     int metalSize = 1;
     int metalCounter = 0;
     int metalWeight = 4;
 
-    void throwOutBottleCap(BottleCap &cap);
     std::unique_ptr<BottleCap[]> capContent;
     int capSize = 1;
     int capCounter = 0;
     int capWeight = 1;
-
-    virtual void emptyContents();
 };
 
 
