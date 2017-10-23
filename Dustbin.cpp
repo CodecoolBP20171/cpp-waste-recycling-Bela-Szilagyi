@@ -43,9 +43,6 @@ void Dustbin::throwOutGarbage(Garbage &garbage) {
     weight += garbageWeight;
 }
 
-// the argument is an instance of the PaperGarbage class.
-// If it's squeezed, then it puts that into the paperContent array.
-// If the PaperGarbage instance is not squeezed, it raises a DustbinContentError exception
 void Dustbin::throwOutPaperGarbage(PaperGarbage &paperGarbage) {
     if (weight+paperWeight > maxWeight) {
         throw DustbinIsFull();
@@ -69,9 +66,6 @@ void Dustbin::throwOutPaperGarbage(PaperGarbage &paperGarbage) {
     weight += paperWeight;
 }
 
-// the argument is an instance of the PlasticGarbage class.
-// If it's clean, then it puts that into the plasticContent array.
-// If the PlasticGarbage instance is not clean, it raises a DustbinContentError exception
 void Dustbin::throwOutPlasticGarbage(PlasticGarbage &plasticGarbage) {
     if (weight+plasticWeight > maxWeight) {
         throw DustbinIsFull();
@@ -107,9 +101,6 @@ void Dustbin::emptyContents() {
     garbageSize = 1;
     garbageCounter = 0;
     weight = 0;
-    //houseWasteContent.erase(houseWasteContent.begin(), houseWasteContent.end());
-    //paperContent.erase(paperContent.begin(), paperContent.end());
-    //plasticContent.erase(plasticContent.begin(), plasticContent.end());
 }
 
 const std::string &Dustbin::getColor() const {

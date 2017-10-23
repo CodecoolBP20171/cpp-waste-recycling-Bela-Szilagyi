@@ -279,6 +279,3 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
-//TODO console
-//TODO delete comments

@@ -57,8 +57,6 @@ namespace ConfigurationStrings {
 }
 
 namespace CommandStrings {
-//    static const std::vector<std::string> Dustbin = {"d", "dustbin"};
-//    static const std::vector<std::string> Dustbin9000 = {"d9000", "dutbin9000"};
     static const std::vector<std::string> Throwout = {"t", "throwout"};
     static const std::vector<std::string> Empty = {"e", "empty"};
     static const std::vector<std::string> Help = {"h", "help"};
