@@ -8,14 +8,6 @@
 #include <iostream>
 #include <vector>
 
-/*
-enum binTypes {
-    DUSTBIN,
-    DUSTBIN9000,
-    INVALID_DUSTBIN
-};
-*/
-
 enum GarbageType {
     WASTE,
     PAPER,

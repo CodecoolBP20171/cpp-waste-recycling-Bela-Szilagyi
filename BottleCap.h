@@ -11,12 +11,6 @@ class BottleCap : public Garbage {
 public:
     BottleCap() {}
 
-/*
-    BottleCap(std::string name)
-    : Garbage(name)
-    {}
-*/
-
     BottleCap(std::string name, std::string color)
     : Garbage(name)
     , color(color)

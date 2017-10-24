@@ -37,26 +37,6 @@ TEST_F(dustbin, squeezePaper) {
     ASSERT_EQ(true, paper.isSqueezed);
 }
 
-/*
-TEST_F(dustbin, testFillAfterEmptyContents) {
-    Garbage garbage("garbage1");
-    d.throwOutGarbage(garbage);
-    Garbage garbage2("garbage2");
-    d.throwOutGarbage(garbage2);
-    PaperGarbage paper("paper1");
-    paper.squeeze();
-    d.throwOutPaperGarbage(paper);
-    PaperGarbage paper2("paper2");
-    paper2.squeeze();
-    d.throwOutPaperGarbage(paper2);
-    PlasticGarbage plastic("plastic1");
-    plastic.clean();
-    d.emptyContents();
-    d.throwOutPlasticGarbage(plastic);
-    ASSERT_EQ("plastic1", d.plasticContent[0].getName());
-}
-*/
-
 TEST(paperNotSqueezed, what)
 {
     Dustbin d;
@@ -116,24 +96,10 @@ TEST_F(dustbin9000, testDustbinColor) {
     ASSERT_EQ("red", d9000.getColor());
 }
 
-/*
-TEST_F(dustbin9000, testThrowOutGarbage) {
-    Garbage garbage("garbage9000");
-    d9000.throwOutGarbage(garbage);
-    ASSERT_EQ("garbage9000", d9000.houseWasteContent[0].getName());
-}
-*/
-
 TEST_F(dustbin9000, testCreateMetalGarbage) {
     MetalGarbage metal("metal9000");
     ASSERT_EQ("metal9000", metal.getName());
 }
-
-/*TEST_F(dustbin9000, testThrowOutPinkCap) {
-    BottleCap pinkCap("pinkCap", "pink");
-    d9000.throwOutBottleCap(pinkCap);
-    ASSERT_EQ("pinkCap", d9000.capContent[0].getName());
-}*/
 
 TEST(capNotPink, what)
 {
